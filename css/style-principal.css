@@ -231,6 +231,19 @@ a {
 }
 
 
+@keyframes navbar { 
+  from {
+    background: transparent;
+    padding: 20px 0;
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 8px 0;
+  }
+  
+}
+
 /* === BOTÕES === */
 .btn,
 .btn-outline {
