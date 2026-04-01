@@ -1,0 +1,169 @@
+/* === FONTES === */
+@font-face {
+  font-family: "titulo";
+  src: url("../assests/fonts/titulo.ttf");
+}
+
+@font-face {
+  font-family: "descricao";
+  src: url("../assests/fonts/descrição.ttf");
+}
+
+@font-face {
+  font-family: "private";
+  src: url("../assests/fonts/miedinger-bold.ttf");
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === GERAL === */
+body {
+  background: #fff;
+  color: #000;
+  font-family: "descricao", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 15px;
+}
+
+/* === LOGO === */
+.logo-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* === CONTAINERS === */
+.container {
+  max-width: 950px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+/* === SEÇÕES === */
+section {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* === TÍTULO PRINCIPAL === */
+.sobre h1 {
+  font-family: "titulo", sans-serif;
+  font-size: 52px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: #000;
+}
+
+/* === TÍTULOS SECUNDÁRIOS === */
+h2 {
+  font-family: "titulo", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  color: #111;
+  letter-spacing: 0.5px;
+}
+
+/* === PARÁGRAFOS === */
+p {
+  font-family: "descricao", sans-serif;
+  font-size: 20px;
+  color: #222;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+/* === EFEITOS VISUAIS === */
+section h2:hover {
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+section p:hover {
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+/* === ANIMAÇÃO DE APARIÇÃO === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+
+/* === RODAPÉ === */
+footer {
+  font-family: "private", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  padding: 20px 15px;
+  max-width: 950px;
+  width: 100%;
+  margin-top: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 768px) {
+  body {
+    padding: 25px 10px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .sobre h1 {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 20px 10px;
+  }
+}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Mode</title>
+  <link rel="stylesheet" href="css/style-principal.css">
+
+
+</head>
+
+<body>
+  <div class="scale-wrapper">
+    <!-- Vídeo de fundo global (opção C): altere data-src para mudar o arquivo .mp4 -->
+    <video id="bg-video" autoplay muted loop playsinline preload="auto" style="opacity:1;" aria-hidden="true">
+      <source src="../assests/videos/fundo.mp4" type="video/mp4">
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+
+    <!-- Overlay global sobre o vídeo; ajuste --video-overlay-alpha no CSS -->
+    <div class="video-overlay" aria-hidden="true"></div>
+
+    <div class="content-overlay">
+      <!-- HEADER -->
+      <header class="navbar">
+        <div class="container">
+        </div>
+        <img src="./assests/Agrupar_1.png" alt="Logo branca" class="logo" id="logo-navbar">
+        <div id="logo-placeholder" class="logo-placeholder" aria-hidden="true"></div>
+
+      </header>
+
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="hero-center">
+          <h1 id="typewriter"></h1>
+          <div class="buttons">
+            <a href="#events" class="btn">Ver Eventos</a>
+            <a href="https://www.sympla.com.br/evento/private/3152118?share_id=copiarlink" target="_blank"
+              class="btn ticket-btn">Tickets</a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="events" class="events">
+        <div class="container">
+          <h2>Próximos Eventos</h2>
+          <div class="grid">
+            <article class="card">
+              <img src="./assests/caio_gabriel_e_lua.png" alt="Evento 1">
+              <h3>Saturday Mays 22Nd</h3>
+              <p>22 de Novembro • 17h às 00h</p>
+              <a href="https://www.sympla.com.br/evento/private/3152118?share_id=copiarlink" target="_blank"
+                class="btn ticket-btn">ingressos</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+            <article class="card">
+              <img src="./assets/teste.jpg" alt="Evento 2">
+              <h3>Sunset Party</h3>
+              <p>25 de Outubro • 18h</p>
+              <a href="https://www.sympla.com.br/evento/private/3152118?share_id=copiarlink" target="_blank"
+                class="btn ticket-btn">Tickets</a>
+            </article>
+            <article class="card">
+              <img src="./assets/teste.jpg" alt="Evento 3">
+              <h3>After Hours</h3>
+              <p>30 de Outubro • 04h</p>
+              <a href="https://www.sympla.com.br/evento/private/3152118?share_id=copiarlink" target="_blank"
+                class="btn ticket-btn">Tickets</a>
+            </article>
+          </div>-->
+
+
+      <section id="gallery" class="gallery">
+        <div class="container">
+          <h2>Galeria</h2>
+          <div class="grid">
+            <article class="card">
+              <img src="./assests/FEED_ESTACIONAMENTO.png" alt="Estacionamento" class="gallery-img" />
+              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
+            </article>
+            <article class="card">
+              <img src="./assests/FEED_TIMES_SQUARE.png" alt="Times Square" class="gallery-img" />
+              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
+            </article>
+            <article class="card">
+              <img src="./assests/Prancheta_2.png" alt="Prancheta 2" class="gallery-img" />
+              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
+            </article>
+            <article class="card">
+              <img src="./assests/Prancheta_1.png" alt="Prancheta 1" class="gallery-img" />
+              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal -->
+      <div id="image-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img" />
+        <div class="modal-caption" id="modal-caption"></div>
+        <div class="modal-nav prev">&#10094;</div>
+        <div class="modal-nav next">&#10095;</div>
+      </div>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact">
+        <div class="container grid">
+          <div>
+            <h2>Reservas & Contato</h2>
+            <p>Email: <a href="mailto:info@seudominio.com">privateprofissional@gmail.com</a></p>
+            <p>Telefone: <a href="tel:+34600000000">+55 34 9732-0875</a></p>
+          </div>
+
+          <!-- Substitui o formulário pela lista Social / Música / Jurídico -->
+          <div class="contact-lists" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+            <div>
+              <h3 class="muted">Social</h3>
+              <ul class="footer-list">
+                <li>
+                  <a href="#" class="botao">
+                    <p>• Instagram</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="botao">
+                    <p>• TikTok</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="muted">Música</h3>
+              <ul class="footer-list">
+                <li>
+                  <a href="#" class="botao">
+                    <p>• Spotify</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="botao">
+                    <p>• SoundCloud</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="botao">
+                    <p>• YouTube</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="muted">Jurídico</h3>
+              <ul id="music-list" class="footer-list open">
+                <li>
+                  <a href="termos.html" class="botao">
+                    <p>• Termos e Condições</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="privacidade.html" class="botao">
+                    <p>• Política de Privacidade</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="reembolso.html" class="botao">
+                    <p>• Política de Reembolso</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer footer-dynamic">
+        <div class="container footer-grid">
+          <!-- Placeholder left (can hold logo/credits) - empty to keep vertical rhythm -->
+          <div></div>
+          <!-- Right: keep space above footer-bottom -->
+        </div>
+
+        <div class="container footer-bottom">
+          <div class="footer-bottom-left">
+            <p class="footer-small">PRIVATE © 2025 •<br> TODOS OS DIREITOS RESERVADOS.</p>
+          </div>
+          <div class="footer-bottom-right">
+            <p class="copyright-note">Proibida a reprodução total ou parcial de qualquer conteúdo, imagem, vídeo ou
+              elemento visual deste site sem autorização prévia e por escrito da organização.</p>
+          </div>
+        </div>
+      </footer>
+
+      <div class="slider-indicators">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+    </div> <!-- fecha .content-overlay -->
+
+    <!-- SCRIPTS -->
+
+    <script>
+      const logo2 = document.getElementById("logo2");
+
+      themeSwitch.addEventListener("change", () => {
+        if (themeSwitch.checked) {
+          body.classList.add("light-mode");
+          body.classList.remove("dark-mode");
+          logo2.src = "./assets/logo2.png"; // imagem para modo claro
+        } else {
+          body.classList.add("dark-mode");
+          body.classList.remove("light-mode");
+          logo2.src = "./assets/logo2.png"; // imagem para modo escuro
+        }
+        localStorage.setItem("theme", themeSwitch.checked ? "light" : "dark");
+      });
+
+      // Aplica imagem correta ao carregar
+      if (savedTheme === "light") {
+        themeSwitch.checked = true;
+        body.classList.add("light-mode");
+        logo2.src = "./assets/logo2.png";
+      } else {
+        body.classList.add("dark-mode");
+        logo2.src = "./assets/logo2.png";
+      }
+
+    </script>
+
+    <script>
+      const texts = [
+        "O acesso",
+        "não é",
+        "pra todos",
+        "Privatë"
+      ];
+
+      let count = 0;
+      let index = 0;
+      let currentText = "";
+      let letter = "";
+      const speed = 100;
+      const eraseSpeed = 50;
+      const delayBetween = 1100;
+
+      const typewriter = document.getElementById("typewriter");
+
+      function type() {
+        if (count === texts.length) count = 0;
+        currentText = texts[count];
+        letter = currentText.slice(0, ++index);
+        typewriter.textContent = letter;
+
+        if (letter.length === currentText.length) {
+          setTimeout(erase, delayBetween);
+        } else {
+          setTimeout(type, speed);
+        }
+      }
+
+      function erase() {
+        letter = currentText.slice(0, --index);
+        typewriter.textContent = letter;
+
+        if (letter.length === 0) {
+          count++;
+          setTimeout(type, 400);
+        } else {
+          setTimeout(erase, eraseSpeed);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", type);
+    </script>
+
+
+    <script>
+      const modal = document.getElementById("photo-modal");
+      const modalImg = document.getElementById("modal-img");
+      const caption = document.getElementById("caption");
+      const closeBtn = document.querySelector(".close");
+      const prevBtn = document.querySelector(".nav.prev");
+      const nextBtn = document.querySelector(".nav.next");
+      const images = document.querySelectorAll(".gallery img");
+
+      let currentIndex = 0;
+
+      function openModal(index) {
+        currentIndex = index;
+        modal.style.display = "block";
+        modalImg.src = images[index].src;
+        caption.textContent = images[index].alt;
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        openModal(currentIndex);
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        openModal(currentIndex);
+      }
+
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => openModal(index));
+      });
+
+      closeBtn.onclick = () => modal.style.display = "none";
+      nextBtn.onclick = showNext;
+      prevBtn.onclick = showPrev;
+
+      window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      };
+
+      // Touch swipe
+      let startX = 0;
+      modal.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+      modal.addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) showNext();
+        else if (endX - startX > 50) showPrev();
+      });
+
+      let isDragging = false;
+
+
+      modal.addEventListener("mousedown", e => {
+        isDragging = true;
+        startX = e.clientX;
+      });
+
+      modal.addEventListener("mouseup", e => {
+        if (!isDragging) return;
+        let endX = e.clientX;
+        if (startX - endX > 50) showNext();
+        else if (endX - startX > 50) showPrev();
+        isDragging = false;
+      });
+
+    </script>
+    <!-- Inicializa o vídeo de fundo: define src a partir de data-src e tenta play() silencioso -->
+    <script>
+      (function initBgVideo() {
+        // Onde alterar: caminho do vídeo está no atributo data-src do <source>
+        const video = document.getElementById('bg-video');
+        if (!video) return;
+        const srcEl = video.querySelector('source[data-src]');
+        if (!srcEl) return;
+
+        // Se o <source> já tem src, respeitamos; caso contrário, copiamos data-src -> src
+        if (!srcEl.src && srcEl.dataset && srcEl.dataset.src) {
+          srcEl.src = srcEl.dataset.src;
+        }
+
+        // Tenta carregar e reproduzir silenciosamente. Se autoplay for bloqueado, não atrapalha.
+        try {
+          if (typeof video.load === 'function') video.load();
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {/* autoplay bloqueado */ });
+        } catch (err) {
+          // falha silenciosa
+        }
+      })();
+    </script>
+    <script src="js/contact.js"></script>
+    <script>
+      // Footer toggles: cada função controla sua lista (separadas por requisitos)
+      // Accordion exclusivo: abre a lista solicitada e fecha as demais
+      function openExclusive(targetId) {
+        const lists = ['social-list', 'music-list', 'legal-list', 'community-list'];
+        lists.forEach(id => {
+          const el = document.getElementById(id);
+          const btn = document.querySelector(`.footer-toggle[data-target="${id}"]`);
+          if (!el) return;
+          if (id === targetId) {
+            const willOpen = !el.classList.contains('open');
+            // fechar todas primeiro
+            lists.forEach(i => document.getElementById(i)?.classList.remove('open'));
+            // definir somente a desejada
+            if (willOpen) el.classList.add('open');
+            // atualizar aria-expanded
+            if (btn) btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+          } else {
+            el.classList.remove('open');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      function showSocial() { openExclusive('social-list'); }
+      function showMusic() { openExclusive('music-list'); }
+      function showLegal() { openExclusive('legal-list'); }
+      function showCommunity() { openExclusive('community-list'); }
+
+      // Em telas grandes, as listas já estarão visíveis (CSS media query). Mantemos aria consistente.
+      if (window.matchMedia('(min-width:900px)').matches) {
+        document.querySelectorAll('.footer-toggle').forEach(btn => btn.setAttribute('aria-expanded', 'true'));
+        document.querySelectorAll('.footer-list').forEach(list => list.classList.add('open'));
+      }
+    </script>
+
+    <script>
+      function carregarConteudo(pagina) {
+        fetch(`conteudos/${pagina}`)
+          .then((resposta) => {
+            if (!resposta.ok) throw new Error('Erro ao carregar conteúdo');
+            return resposta.text();
+          })
+          .then((html) => {
+            document.getElementById('conteudo').innerHTML = html;
+          })
+          .catch((erro) => {
+            document.getElementById('conteudo').innerHTML = `<p>Erro ao carregar a aba: ${erro.message}</p>`;
+          });
+      }
+    </script>
+
+    <script>
+      lightGallery(document.getElementById('lightgallery'), {
+        selector: '.item',
+        zoom: true,
+        thumbnail: true,
+        mode: 'lg-slide',
+        swipe: true,
+        download: false,
+        actualSize: false,
+        hideBarsDelay: 3000
+      });
+    </script>
+
+  </div> <!-- fecha .scale-wrapper -->
+</body>
+
+</html>

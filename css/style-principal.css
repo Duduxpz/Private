@@ -1,0 +1,1644 @@
+/* === FONTE MIEDINGER TYPE BOLD === */
+@font-face {
+  font-family: "private";
+  src: url("../assests/fonts/miedinger-bold.ttf")
+}
+
+@font-face {
+  font-family: "rodapé";
+  src: url("../assests/fonts/Fontspring-DEMO-breulgroteska-bold.ttf");
+}
+
+/* Registrar a fonte .otf pedida pelo usuário */
+@font-face {
+  font-family: 'breulgroteska';
+  src: url('../assests/fonts/Fontspring-DEMO-breulgroteska-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "titulo";
+  src: url("../assests/fonts/titulo.ttf");
+}
+
+
+/* === RESET BÁSICO === */
+* {
+  font-family: 'private', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* === BASE === */
+/* Vídeo de fundo e overlay */
+/*
+  Como usar:
+  - Altere o caminho do vídeo no HTML: <source data-src="./assets/videos/fundo.mp4">
+  - Para mudar a opacidade da overlay, ajuste a variável --video-overlay-alpha abaixo.
+  - Para forçar cores dos textos, veja as regras .hero *, .gallery (já configuradas).
+*/
+
+/* variável para controlar a opacidade da camada escura sobre o vídeo */
+:root {
+  /* overlay branca translúcida para texto preto legível */
+  --video-overlay-alpha: 0.22;
+  /* 0 = transparente, 1 = totalmente opaco */
+  --text-on-video: #000000;
+  /* cor padrão dos textos sobre o vídeo (preto) */
+}
+
+
+/* Vídeo global: ocupa toda a tela e fica atrás do conteúdo */
+#bg-video {
+  position: fixed;
+  inset: 0;
+  /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  /* atrás do overlay e do conteúdo */
+}
+
+/* Overlay escura sobre o vídeo. Ajuste --video-overlay-alpha para alterar força */
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  /* usar camada branca translúcida para garantir legibilidade de texto preto */
+  background: rgb(255 255 255 / var(--video-overlay-alpha));
+  z-index: -1;
+  /* overlay entre vídeo (-2) e conteúdo */
+  pointer-events: none;
+  /* garante que não bloqueie interações */
+}
+
+/* Helper: caso precise de uma overlay mais escura dinamicamente */
+.video-overlay.dark {
+  background: rgb(255 255 255 / calc(var(--video-overlay-alpha) + 0.15));
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 2;
+  /* não forçar cor global aqui; aplicar branco somente ao hero abaixo */
+}
+
+/* Mantém o hero com textos brancos */
+.hero * {
+  /* herda a cor definida em :root; facilita alternar tema */
+  color: var(--text-on-video) !important;
+}
+
+/* Tornar o hero um contexto posicionável para o vídeo de fundo local */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 50vh;
+  /* garante que o hero ocupe boa parte da viewport */
+  padding-top: 40px;
+  /* reduzir espaço acima do conteúdo */
+}
+
+/* Vídeo específico do hero (cobrindo apenas a altura do hero) */
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  /* top:0; left:0; right:0; bottom:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  /* fica atrás do overlay e do conteúdo do hero */
+}
+
+/* Overlay limitada ao hero (fica acima do vídeo e atrás do conteúdo) */
+.hero .video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* overlay entre vídeo (-2) e conteúdo (0/1) */
+}
+
+/* Regra específica para forçar o comportamento do #bg-video quando ele está dentro do .hero
+   Essa regra é propositalmente mais específica (usa o id dentro do .hero) e aparece depois
+   para sobrescrever a declaração global #bg-video definida no topo do arquivo. */
+.hero #bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  /* atrás do conteúdo do hero, acima do fundo da página */
+}
+
+/* Garante que containers dentro da overlay fiquem acima da camada */
+.content-overlay .container {
+  position: relative;
+  z-index: 3;
+}
+
+body {
+  font-family: "titulo", sans-serif;
+  /* mantemos o vídeo como fundo; body em si transparente */
+  background: transparent;
+  color: var(--text-on-video);
+  line-height: 1.5;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* === TÍTULOS === */
+h1,
+h2,
+h3 {
+  font-family: "titulo", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* === LAYOUT BASE === */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* FOOTER DINÂMICO */
+.footer-dynamic {
+  padding: 80px 0 40px;
+  color: var(--text-on-video);
+  font-family: 'breulgroteska', 'rodapé', sans-serif;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-left .footer-cta {
+  font-size: 16px;
+  max-width: 380px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.footer-right .muted {
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.footer-right .footer-list {
+  padding-left: 0;
+}
+
+.footer-right .footer-list li {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.private-btn {
+  width: 200px;
+}
+
+.footer-toggle {
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+.footer-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+.footer-list.open {
+  max-height: 500px;
+  /* suficiente para mostrar itens */
+}
+
+.footer-list li {
+  padding: 6px 0;
+  font-size: 15px;
+}
+
+.footer-list a {
+  color: var(--text-on-video);
+  text-decoration: none;
+}
+
+.footer-list a:hover,
+.footer-list a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.footer-bottom {
+  margin-top: 28px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+}
+
+.footer-bottom-left .footer-small {
+  font-family: 'titulo', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-bottom-right .copyright-note {
+  font-family: 'descricao', sans-serif;
+
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.85);
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-right .copyright-note {
+    font-family: "descricao", sans-serif;
+    text-align: left;
+  }
+}
+
+.copyright-note {
+  font-family: "descricao", sans-serif;
+  font-size: 13px;
+  opacity: 0.9;
+  max-width: 800px;
+}
+
+@media (min-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .footer-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .footer-list.open {
+    max-height: none;
+  }
+
+  .footer-toggle {
+    cursor: default;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* === HEADER / NAVBAR === */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* centraliza horizontalmente */
+  align-items: center;
+  /* centraliza verticalmente */
+  padding-top: -50px;
+  /* distância do topo */
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  position: relative;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticket-btn {
+  z-index: 1;
+}
+
+.navbar.shrink {
+  background: rgba(0, 0, 0, 0.95);
+  padding: 8px 0;
+}
+
+.navbar .logo {
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Sticky logo: aplicado via JS quando o usuário rola além da posição original */
+.logo-sticky {
+  position: fixed !important;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  transition: transform 0.18s ease, top 0.18s ease;
+}
+
+/* Placeholder to avoid layout jump when logo becomes fixed */
+.logo-placeholder {
+  display: block;
+  width: 100%;
+  height: 0;
+  /* will be set dynamically */
+}
+
+.navbar.shrink .logo {
+  height: 35px;
+}
+
+.menu a:hover {
+  color: #ff0066;
+}
+
+
+/* === BOTÕES === */
+.btn,
+.btn-outline {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn {
+  font-family: 'private', sans-serif;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #f1f1f1;
+}
+
+/* Botões específicos do hero: fundo preto e texto branco (não altera outros botões) */
+.hero .btn {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: transparent;
+}
+
+.hero .btn:hover,
+.hero .btn:focus {
+  background: #111 !important;
+  color: #fff !important;
+  outline: none;
+}
+
+.btn-outline {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Estilo do botão Private (círculo + texto) */
+.private-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  color: #000;
+  border-radius: 50px;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-family: 'private', sans-serif;
+  font-weight: bold;
+  width: 220px;
+  height: 45px;
+  transition: 0.3s;
+}
+
+.private-btn .text-left {
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding-left: 10px;
+}
+
+.private-btn .circle {
+  background-color: #eaeaea;
+  border-radius: 50%;
+  padding: 10px 18px;
+  font-size: 13px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.private-btn:hover {
+  transform: scale(1.05);
+}
+
+.private-btn:hover .circle {
+  background-color: #000;
+  color: #fff;
+}
+
+/* === HERO === */
+.hero {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  background: transparent;
+  /* mostra o vídeo por trás */
+  position: relative;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  margin-bottom: 25px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.hero-img img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* === EVENTS BASE === */
+.events {
+  padding: 80px 0;
+  background: transparent;
+}
+
+.events h2 {
+  font-family: "private", sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 55px;
+  letter-spacing: 1px;
+}
+
+/* === GRID DE EVENTOS === */
+.events .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* === CARD DE EVENTO === */
+.card {
+  background: #000;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 20px;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: fadeZoomIn 0.9s ease forwards;
+}
+
+/* === ANIMAÇÃO === */
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === ATRASO SUAVE EM CADA CARD === */
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.55s;
+}
+
+.card:nth-child(5) {
+  animation-delay: 0.7s;
+}
+
+/* === INTERAÇÃO === */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* === IMAGEM DO CARD === */
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  border: 10px solid #000;
+  border-radius: 2px;
+}
+
+/* === TEXTO E BOTÕES === */
+.card h3 {
+  font-family: "private", sans-serif;
+  margin: 20px;
+  font-size: 2px;
+  color: #fff;
+}
+
+.card p {
+  margin: 0 15px 10px;
+  font-size: 17px;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.card .btn.ticket-btn {
+  font-family: "private", sans-serif;
+  margin-bottom: 15px;
+  color: #ffffff;
+  background-color: #1966ff;
+  margin: 20px;
+  width: 36%;
+  max-height: fit-content;
+  height: auto;
+  margin-top: 2px;
+}
+
+.card .btn.ticket-btn:hover {
+  background-color: #004be0;
+}
+
+/* ==========================================================
+   === RESPONSIVIDADE TOTAL (Telas Grandes > Telas Pequenas)
+   ========================================================== */
+
+.card {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* === 4K / ULTRA-WIDE (2560px+) === */
+@media (min-width: 2560px) {
+  .events h2 {
+    font-size: 85px;
+  }
+
+  .card img {
+    max-height: 700px;
+  }
+
+  .card h3 {
+    font-size: 32px;
+  }
+
+  .card p {
+    font-size: 20px;
+  }
+
+  .card .btn.ticket-btn {
+    font-size: 18px;
+    padding: 12px 22px;
+  }
+}
+
+/* === 2K / DESKTOPS GRANDES (1920px–2559px) === */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .events h2 {
+    font-size: 65px;
+  }
+
+  .card h3 {
+    font-size: 28px;
+  }
+
+  .card p {
+    font-size: 18px;
+  }
+
+  .card img {
+    max-height: 600px;
+  }
+}
+
+/* === LAPTOPS (1440px–1919px) === */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .events h2 {
+    font-size: 55px;
+  }
+
+  .card h3 {
+    font-size: 25px;
+  }
+
+  .card p {
+    font-size: 17px;
+  }
+}
+
+/* === NOTEBOOKS / MÉDIOS (1024px–1439px) === */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .events {
+    padding: 60px 0;
+  }
+
+  .events h2 {
+    font-size: 45px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 16px;
+  }
+
+  .card img {
+    max-height: 450px;
+  }
+}
+
+/* === TABLETS (768px–1023px) === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .events {
+    padding: 50px 0;
+  }
+
+  .events h2 {
+    font-size: 38px;
+  }
+
+  .events .grid {
+    gap: 20px;
+  }
+
+  .card h3 {
+    font-size: 22px;
+  }
+
+  .card p {
+    font-size: 15px;
+  }
+
+  .card img {
+    max-height: 400px;
+  }
+}
+
+/* === CELULARES GRANDES (480px–767px) === */
+@media (min-width: 480px) and (max-width: 767px) {
+  .events {
+    padding: 40px 0;
+  }
+
+  .events h2 {
+    font-size: 32px;
+  }
+
+  .events .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    margin-top: 15px;
+  }
+
+  .card img {
+    max-height: 360px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+    margin: 15px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .card .btn.ticket-btn {
+    width: calc(100% - 20px);
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+/* === CELULARES PEQUENOS (320px–479px) === */
+@media (max-width: 479px) {
+  .events {
+    padding: 35px 0;
+  }
+
+  .events h2 {
+    font-size: 26px;
+  }
+
+  .events .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    max-height: 300px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    margin: 12px;
+  }
+
+  .card p {
+    font-size: 13px;
+  }
+
+  .card .btn.ticket-btn {
+    font-size: 14px;
+    padding: 8px;
+    margin: 10px;
+  }
+}
+
+/* === MICRO TELAS / RELOGIOS SMART / WEB EMBED (menos de 320px) === */
+@media (max-width: 319px) {
+  .events {
+    padding: 20px 0;
+  }
+
+  .events h2 {
+    font-size: 20px;
+  }
+
+  .card img {
+    max-height: 220px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+    margin: 8px;
+  }
+
+  .card p {
+    font-size: 12px;
+  }
+
+  .card .btn.ticket-btn {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+
+
+
+/* === GALLERY === */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gallery {
+  padding: 80px 30px;
+  background: transparent;
+  color: #111;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-family: "private", sans-serif;
+  margin-bottom: 30px;
+  font-size: 47px;
+}
+
+.gallery .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  justify-items: center;
+}
+
+.gallery .card {
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeZoom 0.6s ease forwards;
+}
+
+.gallery .card a.gallery-item img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery .card a.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.card .btn.gallery-btn {
+  font-family: "private", sans-serif;
+  margin: 15px 0 20px;
+  color: #ffffff;
+  background-color: #1966ff;
+  width: 65%;
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.card .btn.gallery-btn:hover {
+  background-color: #0047cc;
+}
+
+.gallery p,
+.gallery a {
+  color: inherit;
+}
+
+/* === 4K / ULTRA-WIDE (2560px+) === */
+@media (min-width: 2560px) {
+  .gallery h2 {
+    font-size: 70px;
+  }
+
+  .gallery .card {
+    max-width: 420px;
+  }
+}
+
+/* === 2K / DESKTOPS GRANDES (1920px–2559px) === */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .gallery h2 {
+    font-size: 60px;
+  }
+
+  .gallery .card {
+    max-width: 400px;
+  }
+}
+
+/* === LAPTOPS (1440px–1919px) === */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .gallery h2 {
+    font-size: 52px;
+  }
+
+  .gallery .card {
+    max-width: 380px;
+  }
+}
+
+/* === NOTEBOOKS / MÉDIOS (1024px–1439px) === */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .gallery h2 {
+    font-size: 45px;
+  }
+
+  .gallery .card {
+    max-width: 360px;
+  }
+}
+
+/* === TABLETS (768px–1023px) === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery h2 {
+    font-size: 38px;
+  }
+
+  .gallery .card {
+    max-width: 340px;
+  }
+}
+
+/* === CELULARES GRANDES (480px–767px) === */
+@media (min-width: 480px) and (max-width: 767px) {
+  .gallery h2 {
+    font-size: 32px;
+  }
+
+  .gallery .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gallery .card {
+    margin-top: 15px;
+    max-width: 100%;
+  }
+}
+
+
+/* === CELULARES PEQUENOS (320px–479px) === */
+@media (max-width: 479px) {
+  .gallery
+
+  /* === CONTACT === */
+  .contact {
+    padding: 80px 0;
+  }
+
+  .contact .grid {
+    font-family: "titulo", sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .contact h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .contact p {
+    font-family: "titulo", sans-serif;
+    font-size: 24px;
+    color: #080808;
+    margin-bottom: 8px;
+  }
+
+  .contact form {
+    display: grid;
+    gap: 10px;
+  }
+
+  .contact input,
+  .contact textarea {
+    font-family: "titulo", sans-serif;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #555;
+    background: transparent;
+    color: inherit;
+    resize: none;
+  }
+
+  .contact input:focus,
+  .contact textarea:focus {
+    outline: none;
+    border-color: #000000;
+  }
+
+  .contact .muted {
+    font-family: "titulo", sans-serif;
+    font-size: 29px;
+    margin-bottom: 15px;
+
+  }
+
+  .contact a {
+    font-family: "titulo", sans-serif;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+
+  /* === FOOTER === */
+  .footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px 0;
+    text-align: center;
+    background: transparent;
+  }
+
+  .footer nav {
+    margin-top: 8px;
+  }
+
+  .footer nav a {
+    margin: 0 10px;
+    color: #aaa;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .footer nav a:hover {
+    color: #000000;
+  }
+
+  .footer p {
+    font-size: 13px;
+    color: #000000;
+    margin-top: 10px;
+  }
+
+  .footer .copyright-note {
+    font-family: "descricao", sans-serif;
+    font-size: 22px;
+    color: #000000;
+  }
+
+  /* === TOGGLE DE TEMA === */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background-color: #bbb;
+    border-radius: 34px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+
+  .icon-light,
+  .icon-dark {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .icon-light {
+    color: #fff;
+  }
+
+  .icon-dark {
+    color: #ff0000;
+  }
+
+  input:checked+.slider {
+    background-color: #8b5cf6;
+  }
+
+  input:checked+.slider .icon-dark {
+    opacity: 1;
+  }
+
+  input:not(:checked)+.slider .icon-light {
+    opacity: 1;
+  }
+
+  .slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+
+  input:checked+.slider:before {
+    transform: translateX(24px);
+  }
+
+  /* === RESPONSIVIDADE === */
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-img {
+      margin-top: 25px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .contact .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+
+
+
+  /* === HERO === */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    background: transparent;
+    /* transparente para deixar o vídeo aparecer atrás */
+    position: relative;
+  }
+
+  .hero-text h1 {
+    font-family: "Miedinger Type Bold", sans-serif;
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--text-on-video);
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin: 0;
+    line-height: 1;
+    display: inline-block;
+  }
+
+
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0 20px;
+    max-width: 2000px;
+  }
+
+  .hero-center h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .hero-center p {
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 600px;
+  }
+
+  .hero-center .buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Cursor piscando */
+
+  #typewriter {
+    font-family: 'private', sans-serif;
+    font-size: clamp(2rem, 7vw, 5rem);
+
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 auto;
+    display: block;
+
+  }
+
+  #typewriter::after {
+    content: "|";
+    margin-left: 5px;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .menu a,
+  .btn,
+  .footer,
+  .hero p,
+  .contact input,
+  .contact textarea {
+    font-family: 'private', sans-serif;
+  }
+
+  .centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  #typewriter {
+    font-family: 'private', sans-serif;
+    font-size: 3vw;
+    /* Tamanho relativo à largura da tela */
+    white-space: nowrap;
+    /* Evita quebra de linha */
+    overflow: hidden;
+    /* Esconde qualquer texto que ultrapasse */
+    text-overflow: ellipsis;
+    /* Adiciona "..." se necessário */
+    max-width: 100%;
+    /* Garante que não ultrapasse a largura do container */
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+
+  .descricao {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+  }
+
+  .botoes {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Responsivo para telas menores */
+  @media (max-width: 505px) {
+    #typewriter {
+      font-size: 4vw;
+      /* Ajusta para telas menores */
+    }
+
+    .descricao {
+      font-size: 30px;
+      padding: 0 10px;
+    }
+
+    .botoes {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .slider-indicators {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background-color: #000000;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    padding-top: 60px;
+  }
+
+  .modal-img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+    animation: fadeIn 0.3s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .nav.prev {
+    left: 20px;
+  }
+
+  .nav.next {
+    right: 20px;
+  }
+
+  #caption {
+    color: #ccc;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+
+  /* Esconde setas em telas pequenas */
+  @media (max-width: 300px) {
+    #logo-navbar {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      max-width: 100px;
+      /* ajuste conforme o tamanho da logo */
+      position: relative;
+    }
+
+    .navbar .container {
+      justify-content: center;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .nav.prev {
+    left: 10px;
+    display: none;
+  }
+
+  /* Esconde setas em telas pequenas */
+  @media (max-width: 300px) {
+    #logo-navbar {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      max-width: 100px;
+      /* ajuste conforme o tamanho da logo */
+      position: relative;
+    }
+
+    .navbar .container {
+      justify-content: center;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav.prev {
+      left: 10px;
+      display: none;
+    }
+
+    .nav.next {
+      right: 10px;
+      display: none;
+    }
+  }
+
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #dcd6f7, #c2e9fb);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .painel-juridico {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .painel-juridico img.logo {
+    max-width: 160px;
+    margin-bottom: 20px;
+  }
+
+  .painel-juridico h1 {
+    font-size: 28px;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+
+  .painel-juridico p {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: justify;
+  }
+
+  .painel-juridico a.botao {
+    display: inline-block;
+    background-color: #0077cc;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .painel-juridico a.botao:hover {
+    background-color: #005fa3;
+  }
+
+  @media (max-width: 600px) {
+    .painel-juridico {
+      padding: 24px;
+    }
+
+    .painel-juridico h1 {
+      font-size: 22px;
+    }
+
+    .painel-juridico p {
+      font-size: 15px;
+    }
+  }
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.modal-caption {
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+  font-family: "private", sans-serif;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+}
+
+.modal-nav.prev {
+  left: 20px;
+}
+
+.modal-nav.next {
+  right: 20px;
+}

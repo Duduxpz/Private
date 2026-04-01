@@ -1,0 +1,319 @@
+/* === FONTES === */
+@font-face {
+  font-family: "termos";
+  src: url("../assests/fonts/descrição.ttf");
+}
+
+@font-face {
+  font-family: "titulo";
+  src: url("../assests/fonts/titulo.ttf");
+}
+
+@font-face {
+  font-family: "descricao";
+  src: url("../assests/fonts/descrição.ttf");
+}
+
+@font-face {
+  font-family: "private";
+  src: url("../assests/fonts/miedinger-bold.ttf");
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === GERAL === */
+body {
+  background: linear-gradient(to bottom right, #ffffff, #ffffff);
+  font-family: "termos", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 15px;
+  min-height: 100vh;
+  color: #000;
+}
+
+/* === LOGO === */
+.logo-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* === CONTEÚDO === */
+.conteudo-juridico {
+  max-width: 950px;
+  /* reduzido para deixar mais compacto */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+  /* leve respiro lateral */
+}
+
+/* === TÍTULOS === */
+.conteudo-juridico h1 {
+  font-family: "titulo", sans-serif;
+  font-size: 48px;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 25px;
+  /* espaço abaixo do título principal */
+  text-align: left;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.conteudo-juridico h2 {
+  font-family: "titulo", sans-serif;
+  font-size: 44px;
+  text-transform: uppercase;
+  margin-top: 35px;
+  margin-bottom: 8px;
+}
+
+.conteudo-juridico h3 {
+  font-family: "titulo", sans-serif;
+  font-size: 27px;
+  text-transform: uppercase;
+  color: #000;
+  margin-top: 35px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* === PARÁGRAFOS === */
+.conteudo-juridico p {
+  font-family: "descricao", sans-serif;
+  font-size: 27px;
+  color: #000;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  /* espaçamento vertical menor para ficar mais coeso */
+  text-align: left;
+}
+
+.conteudo-juridico a {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* === RODAPÉ === */
+footer {
+  font-family: "private", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  padding: 20px 15px;
+  max-width: 950px;
+  width: 100%;
+  margin-top: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 768px) {
+  .conteudo-juridico {
+    max-width: 100%;
+    padding: 0 25px;
+  }
+
+  .conteudo-juridico h1 {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+
+  .conteudo-juridico h2 {
+    font-size: 24px;
+    margin-top: 35px;
+  }
+
+  .conteudo-juridico h3 {
+    font-size: 20px;
+  }
+
+  .conteudo-juridico p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .logo-container img {
+    max-width: 180px;
+  }
+}
+
+
+/* === privacidade === */
+
+/* === FONTES === */
+@font-face {
+  font-family: "termos";
+  src: url("../assests/fonts/descrição.ttf");
+}
+
+@font-face {
+  font-family: "titulo";
+  src: url("../assests/fonts/titulo.ttf");
+}
+
+@font-face {
+  font-family: "descricao";
+  src: url("../assests/fonts/descrição.ttf");
+}
+
+@font-face {
+  font-family: "private";
+  src: url("../assests/fonts/miedinger-bold.ttf");
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === GERAL === */
+body {
+  background: #fff;
+  color: #000;
+  font-family: "ter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 15px;
+  min-height: 100vh;
+}
+
+/* === LOGO === */
+.logo-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+}
+
+/* === CONTEÚDO === */
+.painel-juridico {
+  max-width: 950px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+/* === TÍTULOS === */
+.painel-juridico h1 {
+  font-family: "titulo", sans-serif;
+  font-size: 46px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  line-height: 1.1;
+}
+
+.painel-juridico h2 {
+  font-family: "titulo", sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
+.painel-juridico h3 {
+  font-family: "titulo", sans-serif;
+  font-size: 27px;
+  text-transform: uppercase;
+  color: #000;
+  margin-top: 35px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* === PARÁGRAFOS E LISTAS === */
+.painel-juridico p,
+.painel-juridico ul {
+  font-family: "descricao", sans-serif;
+  font-size: 27px;
+  color: #000;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  /* espaçamento vertical menor para ficar mais coeso */
+  text-align: left;
+}
+
+.painel-juridico ul {
+  list-style: disc inside;
+  margin-left: 15px;
+}
+
+.botao:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* === RODAPÉ === */
+footer {
+  font-family: "private", sans-serif;
+  text-align: center;
+  font-size: 13px;
+  color: #000;
+  padding: 25px 15px;
+  max-width: 950px;
+  width: 100%;
+  margin-top: 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 1.5;
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 768px) {
+  body {
+    padding: 25px 10px;
+  }
+
+  .painel-juridico {
+    padding: 0 15px;
+  }
+
+  .painel-juridico h1 {
+    font-size: 34px;
+  }
+
+  .painel-juridico h2 {
+    font-size: 22px;
+  }
+
+  .painel-juridico p,
+  .painel-juridico ul {
+    font-size: 16px;
+  }
+
+  .logo-container img {
+    max-width: 160px;
+  }
+
+  .botao {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}
+
+/* === reembolso === */
