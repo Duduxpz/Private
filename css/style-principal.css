@@ -178,7 +178,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: 59%;
+  width: 56%;
   z-index: 1000;
   padding: 20px 0;
   display: flex;
@@ -233,6 +233,7 @@ a {
 
 @keyframes navbar { 
   from {
+    width: auto;
     background: transparent;
     padding: 20px 0;
   }
