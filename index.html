@@ -25,10 +25,8 @@
       <!-- HEADER -->
       <header class="navbar">
         <div class="container">
+          <img src="./assests/Agrupar_1.png" alt="Logo branca" class="logo" id="logo-navbar">
         </div>
-        <img src="./assests/Agrupar_1.png" alt="Logo branca" class="logo" id="logo-navbar">
-        <div id="logo-placeholder" class="logo-placeholder" aria-hidden="true"></div>
-
       </header>
 
       <!-- HERO -->
@@ -84,20 +82,19 @@
           <div class="grid">
             <article class="card">
               <img src="./assests/FEED_ESTACIONAMENTO.png" alt="Estacionamento" class="gallery-img" />
-              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
             </article>
             <article class="card">
               <img src="./assests/FEED_TIMES_SQUARE.png" alt="Times Square" class="gallery-img" />
-              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
             </article>
             <article class="card">
               <img src="./assests/Prancheta_2.png" alt="Prancheta 2" class="gallery-img" />
-              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
             </article>
             <article class="card">
               <img src="./assests/Prancheta_1.png" alt="Prancheta 1" class="gallery-img" />
-              <a href="conceito.html" target="_blank" class="btn gallery-btn">Conceito</a>
             </article>
+          </div>
+        </div>
+      </section>
           </div>
         </div>
       </section>
@@ -106,7 +103,6 @@
       <div id="image-modal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="modal-img" />
-        <div class="modal-caption" id="modal-caption"></div>
         <div class="modal-nav prev">&#10094;</div>
         <div class="modal-nav next">&#10095;</div>
       </div>
@@ -287,73 +283,6 @@
       document.addEventListener("DOMContentLoaded", type);
     </script>
 
-
-    <script>
-      const modal = document.getElementById("photo-modal");
-      const modalImg = document.getElementById("modal-img");
-      const caption = document.getElementById("caption");
-      const closeBtn = document.querySelector(".close");
-      const prevBtn = document.querySelector(".nav.prev");
-      const nextBtn = document.querySelector(".nav.next");
-      const images = document.querySelectorAll(".gallery img");
-
-      let currentIndex = 0;
-
-      function openModal(index) {
-        currentIndex = index;
-        modal.style.display = "block";
-        modalImg.src = images[index].src;
-        caption.textContent = images[index].alt;
-      }
-
-      function showNext() {
-        currentIndex = (currentIndex + 1) % images.length;
-        openModal(currentIndex);
-      }
-
-      function showPrev() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        openModal(currentIndex);
-      }
-
-      images.forEach((img, index) => {
-        img.addEventListener("click", () => openModal(index));
-      });
-
-      closeBtn.onclick = () => modal.style.display = "none";
-      nextBtn.onclick = showNext;
-      prevBtn.onclick = showPrev;
-
-      window.onclick = (e) => {
-        if (e.target === modal) modal.style.display = "none";
-      };
-
-      // Touch swipe
-      let startX = 0;
-      modal.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-      modal.addEventListener("touchend", e => {
-        let endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) showNext();
-        else if (endX - startX > 50) showPrev();
-      });
-
-      let isDragging = false;
-
-
-      modal.addEventListener("mousedown", e => {
-        isDragging = true;
-        startX = e.clientX;
-      });
-
-      modal.addEventListener("mouseup", e => {
-        if (!isDragging) return;
-        let endX = e.clientX;
-        if (startX - endX > 50) showNext();
-        else if (endX - startX > 50) showPrev();
-        isDragging = false;
-      });
-
-    </script>
     <!-- Inicializa o vídeo de fundo: define src a partir de data-src e tenta play() silencioso -->
     <script>
       (function initBgVideo() {
@@ -378,6 +307,9 @@
         }
       })();
     </script>
+
+    <!-- Lightbox Gallery Script -->
+    <script src="js/lightbox.js"></script>
     <script src="js/contact.js"></script>
     <script>
       // Footer toggles: cada função controla sua lista (separadas por requisitos)
@@ -429,19 +361,6 @@
             document.getElementById('conteudo').innerHTML = `<p>Erro ao carregar a aba: ${erro.message}</p>`;
           });
       }
-    </script>
-
-    <script>
-      lightGallery(document.getElementById('lightgallery'), {
-        selector: '.item',
-        zoom: true,
-        thumbnail: true,
-        mode: 'lg-slide',
-        swipe: true,
-        download: false,
-        actualSize: false,
-        hideBarsDelay: 3000
-      });
     </script>
 
   </div> <!-- fecha .scale-wrapper -->

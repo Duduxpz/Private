@@ -1,0 +1,10 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Create gallery lightbox script",
+			"type": "shell",
+			"command": "echo. > d:\\private\\js\\lightbox.js"
+		}
+	]
+}

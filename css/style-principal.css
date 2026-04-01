@@ -95,7 +95,7 @@
 
 /* Tornar o hero um contexto posicionável para o vídeo de fundo local */
 .hero {
-  position: relative;
+  position: absolute;
   overflow: hidden;
   min-height: 50vh;
   /* garante que o hero ocupe boa parte da viewport */
@@ -326,22 +326,29 @@ a {
 
 /* === HEADER / NAVBAR === */
 .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: auto;
+  z-index: 1000;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
-  /* centraliza horizontalmente */
   align-items: center;
-  /* centraliza verticalmente */
-  padding-top: -50px;
-  /* distância do topo */
+  background: transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
-  position: relative;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .theme-toggle {
@@ -360,32 +367,16 @@ a {
 }
 
 .navbar .logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+#logo-navbar {
+  display: block;
+  height: 40px;
+  width: auto;
   max-width: 350px;
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Sticky logo: aplicado via JS quando o usuário rola além da posição original */
-.logo-sticky {
-  position: fixed !important;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 200;
-  transition: transform 0.18s ease, top 0.18s ease;
-}
-
-/* Placeholder to avoid layout jump when logo becomes fixed */
-.logo-placeholder {
-  display: block;
-  width: 100%;
-  height: 0;
-  /* will be set dynamically */
-}
-
-.navbar.shrink .logo {
-  height: 35px;
 }
 
 .menu a:hover {
@@ -482,18 +473,26 @@ a {
 
 /* === HERO === */
 .hero {
-  padding-top: 120px;
-  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  width: 100%;
   background: transparent;
-  /* mostra o vídeo por trás */
   position: relative;
+  padding: 0;
+  padding-top: 80px;
 }
 
 .hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .hero h1 {
@@ -526,6 +525,7 @@ a {
   margin-bottom: 30px;
   font-size: 55px;
   letter-spacing: 1px;
+  width: 100%;
 }
 
 /* === GRID DE EVENTOS === */
@@ -614,18 +614,29 @@ a {
 
 .card .btn.ticket-btn {
   font-family: "private", sans-serif;
-  margin-bottom: 15px;
-  color: #ffffff;
-  background-color: #1966ff;
   margin: 20px;
-  width: 36%;
-  max-height: fit-content;
-  height: auto;
-  margin-top: 2px;
+  min-width: 220px;
+  padding: 14px 32px;
+  color: #ffffff;
+  background-color: #0057FF;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 87, 255, 0.3);
 }
 
 .card .btn.ticket-btn:hover {
-  background-color: #004be0;
+  background-color: #003db3;
+  box-shadow: 0 6px 16px rgba(0, 87, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 /* ==========================================================
@@ -862,6 +873,18 @@ a {
   }
 }
 
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .gallery {
   padding: 80px 30px;
   background: transparent;
@@ -871,55 +894,43 @@ a {
 
 .gallery h2 {
   font-family: "private", sans-serif;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-size: 47px;
+  width: 100%;
+  text-align: center;
 }
 
 .gallery .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .gallery .card {
-  background: black;
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 14px;
   overflow: hidden;
   width: 100%;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   animation: fadeZoom 0.6s ease forwards;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.gallery .card a.gallery-item img {
+.gallery .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.gallery .card img.gallery-img {
   width: 100%;
-  max-height: 380px;
+  height: 300px;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.gallery .card a.gallery-item:hover img {
-  transform: scale(1.03);
-}
-
-.card .btn.gallery-btn {
-  font-family: "private", sans-serif;
-  margin: 15px 0 20px;
-  color: #ffffff;
-  background-color: #1966ff;
-  width: 65%;
-  padding: 10px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.card .btn.gallery-btn:hover {
-  background-color: #0047cc;
+  border-radius: 14px;
 }
 
 .gallery p,
@@ -927,62 +938,20 @@ a {
   color: inherit;
 }
 
-/* === 4K / ULTRA-WIDE (2560px+) === */
-@media (min-width: 2560px) {
-  .gallery h2 {
-    font-size: 70px;
-  }
-
-  .gallery .card {
-    max-width: 420px;
-  }
-}
-
-/* === 2K / DESKTOPS GRANDES (1920px–2559px) === */
-@media (min-width: 1920px) and (max-width: 2559px) {
-  .gallery h2 {
-    font-size: 60px;
-  }
-
-  .gallery .card {
-    max-width: 400px;
-  }
-}
-
-/* === LAPTOPS (1440px–1919px) === */
-@media (min-width: 1440px) and (max-width: 1919px) {
-  .gallery h2 {
-    font-size: 52px;
-  }
-
-  .gallery .card {
-    max-width: 380px;
-  }
-}
-
-/* === NOTEBOOKS / MÉDIOS (1024px–1439px) === */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .gallery h2 {
-    font-size: 45px;
-  }
-
-  .gallery .card {
-    max-width: 360px;
-  }
-}
-
-/* === TABLETS (768px–1023px) === */
+/* === RESPONSIVE GALLERY === */
+/* TABLETS (768px–1023px): 2 colunas */
 @media (min-width: 768px) and (max-width: 1023px) {
   .gallery h2 {
     font-size: 38px;
   }
 
-  .gallery .card {
-    max-width: 340px;
+  .gallery .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
-/* === CELULARES GRANDES (480px–767px) === */
+/* CELULARES GRANDES (480px–767px): 1 coluna */
 @media (min-width: 480px) and (max-width: 767px) {
   .gallery h2 {
     font-size: 32px;
@@ -993,9 +962,26 @@ a {
     gap: 20px;
   }
 
-  .gallery .card {
-    margin-top: 15px;
-    max-width: 100%;
+  .gallery .card img.gallery-img {
+    height: 280px;
+  }
+}
+
+/* CELULARES PEQUENOS (max 479px): 1 coluna */
+@media (max-width: 479px) {
+  .gallery h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .gallery .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .gallery .card img.gallery-img {
+    height: 250px;
   }
 }
 
@@ -1219,11 +1205,11 @@ a {
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background: transparent;
-    /* transparente para deixar o vídeo aparecer atrás */
     position: relative;
+    padding: 0;
   }
 
   .hero-text h1 {
@@ -1244,9 +1230,10 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 1.5rem;
     padding: 0 20px;
     max-width: 2000px;
+    width: 100%;
   }
 
   .hero-center h1 {
@@ -1254,20 +1241,25 @@ a {
     font-weight: 700;
     color: #fff;
     line-height: 1.2;
+    text-align: center;
+    width: 100%;
   }
 
   .hero-center p {
     font-size: 0.9rem;
     color: #ccc;
     max-width: 600px;
+    text-align: center;
   }
 
   .hero-center .buttons {
     display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
   }
 
   /* Cursor piscando */
@@ -1275,7 +1267,6 @@ a {
   #typewriter {
     font-family: 'private', sans-serif;
     font-size: clamp(2rem, 7vw, 5rem);
-
     font-weight: 800;
     color: #fff;
     text-align: center;
@@ -1283,7 +1274,7 @@ a {
     letter-spacing: 0.05em;
     margin: 0 auto;
     display: block;
-
+    width: 100%;
   }
 
   #typewriter::after {
@@ -1296,6 +1287,41 @@ a {
     50% {
       opacity: 0;
     }
+  }
+
+  /* Estilos dos botões do hero */
+  .hero .buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #000 !important;
+    color: #fff !important;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hero .buttons .btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+    transform: scale(1.05);
+  }
+
+  .hero .buttons .btn.ticket-btn {
+    background: #0057FF !important;
+    border-color: #0057FF;
+  }
+
+  .hero .buttons .btn.ticket-btn:hover {
+    background: #003db3 !important;
+    border-color: #003db3;
   }
 
   .menu a,
@@ -1458,46 +1484,6 @@ a {
 
   /* Esconde setas em telas pequenas */
   @media (max-width: 300px) {
-    #logo-navbar {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      max-width: 100px;
-      /* ajuste conforme o tamanho da logo */
-      position: relative;
-    }
-
-    .navbar .container {
-      justify-content: center;
-      padding: 10px 15px;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .nav.prev {
-    left: 10px;
-    display: none;
-  }
-
-  /* Esconde setas em telas pequenas */
-  @media (max-width: 300px) {
-    #logo-navbar {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      max-width: 100px;
-      /* ajuste conforme o tamanho da logo */
-      position: relative;
-    }
-
-    .navbar .container {
-      justify-content: center;
-      padding: 10px 15px;
-      display: flex;
-      align-items: center;
-    }
-
     .nav.prev {
       left: 10px;
       display: none;
@@ -1591,54 +1577,157 @@ a {
   display: none;
   position: fixed;
   z-index: 9999;
-  padding-top: 60px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.modal.active {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+
+  to {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+  }
 }
 
 .modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
+  max-width: 80vw;
+  max-height: 85vh;
   object-fit: contain;
+  border-radius: 10px;
+  animation: imageFadeScale 0.4s ease;
 }
 
-.modal-caption {
-  text-align: center;
-  color: #fff;
-  margin-top: 10px;
-  font-family: "private", sans-serif;
+@keyframes imageFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 35px;
+  top: 30px;
+  right: 40px;
   color: #fff;
-  font-size: 40px;
+  font-size: 22px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  z-index: 10000;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
 }
 
 .modal-nav {
   position: absolute;
   top: 50%;
-  font-size: 40px;
+  transform: translateY(-50%);
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
   user-select: none;
-  padding: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+  z-index: 10000;
+}
+
+.modal-nav:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-nav.prev {
-  left: 20px;
+  left: -60px;
 }
 
 .modal-nav.next {
-  right: 20px;
+  right: -60px;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    padding-top: 0;
+  }
+
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-nav {
+    font-size: 18px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .modal-nav.prev {
+    left: -50px;
+  }
+
+  .modal-nav.next {
+    right: -50px;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-nav {
+    display: none;
+  }
+
+  .close {
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-content {
+    max-width: 98%;
+    max-height: 60vh;
+  }
 }
